@@ -39,8 +39,6 @@ public class CountryController {
         return "country/detail";
     }
 
-
-
     @PostMapping("/detail")
     public String postCountry(@RequestParam("code") String code, @RequestParam("name") String name,
             @RequestParam("population") int population, Model model) {
@@ -52,11 +50,22 @@ public class CountryController {
     }
 
     // ----- 削除画面 -----
-    @GetMapping("/delete")
-    public String deleteCountryForm(Model model) {
+    @GetMapping("/delete/{code}")
+    public String deleteCountryForm(@PathVariable String code, Model model) {
         // country/delete.htmlに画面遷移
+
+        //String code1 = code;
+
         return "country/delete";
     }
+    /*
+    @GetMapping("/delete/{code}")
+    public String deleteCountryForm(@PathVariable int code, Model model) {
+        // country/delete.htmlに画面遷移
+
+        return "country/delete";
+    }
+    */
 
     // ----- 削除 -----
     @PostMapping("/delete")
@@ -67,6 +76,4 @@ public class CountryController {
         // 一覧画面にリダイレクト
         return "redirect:/country/list";
     }
-
-
 }
